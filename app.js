@@ -10,37 +10,42 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-function getTemp(city, id) {
-    const apiKey = "6655ee54cb308f830a12f9f17ca78ec3";
-    if(city != "") {
-        fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=metric&lang=cs")
-        .then(response => response.json())
-        .then(data => {
-            if (data.cod === 200) {
-                //odpoved ok, teplota prisla
-                const temp = data.main.temp;
-                document.getElementById(id).innerText = (city + ": " + temp + "°C");
-            } else {
-                //sice prisla odpoved, ale je v ni chyba
-                document.getElementById(id).innerText = "Chyba: " + data.message;
-            }
-        })
-        .catch(error => {
-            //sem by se to nemelo dostat...
-            document.getElementById(id).innerText = "Zařízení není online";
-        });
-    } else {
-        //nemame zadane mesto
-        document.getElementById(id).innerText = "Zadej město";
+function getRandomZnak(zasobnik_znaku){
+    const num = Math.floor(Math.random() * (zasobnik_znaku.length-1));
+    return(zasobnik_znaku[num]);
+}
+
+function Roztoc() {
+
+    let zasobnik_znaku = ["⭐", "❤️", "🍕", "🍖", "🌍"]
+    const refresh_rate1 = 100;
+    const refresh_rate2 = 200;
+    const refresh_rate3 = 300;
+
+    for (let i = 0; i < 20000; i++)
+    {
+        if (i % refresh_rate1 == 0)
+        {
+            document.getElementById("first").textContent = getRandomZnak(zasobnik_znaku);
+        }
+        if (i % refresh_rate2 == 0)
+        {
+           document.getElementById("second").textContent = getRandomZnak(zasobnik_znaku);
+        }
+        if (i % refresh_rate3 == 0)
+        {
+            document.getElementById("third").textContent = getRandomZnak(zasobnik_znaku);
+        }
     }
-}
 
-window.onload = function() {
-    getTemp("Dobronín", "dobronin");
-    getTemp("Jihlava", "jihlava");
-};
+    const first = document.getElementById("first").textContent;
+    const second = document.getElementById("second").textContent;
+    const third = document.getElementById("third").textContent;
 
-function getUserCityTemp() {
-    const city = document.getElementById("input_city").value;
-    getTemp(city, "city");
+    const vysledek = "vyhral jsi";
+
+    if (first == second && second == third)
+    document.getElementById('vysledek').innerText = vysledek;
+    
 }
+    

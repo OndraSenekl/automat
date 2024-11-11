@@ -5,23 +5,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather</title>
+    <title>MuzuPrestatKdyChci</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
     <script src="app.js"></script>
 </head>
 <body>
     <div id="weather">
-        <h1>Teplota</h1>
-        <div id="dobronin">Dobronín: </div>
-        <div id="jihlava">Jihlava: </div>
-        <div id="city">&nbsp;</div>
+        <h1>MuzuPrestatKdyChci</h1>
+        <div id="kotouce">
+            <div id="first">⭐</div>
+            <div id="second">⭐</div>
+            <div id="third">⭐</div>
+        </div>
+        <p id="vysledek"></p>
         <hr />
         <form>
-            <div>
-                <input type="text" id="input_city" placeholder="Zadej město" />
-            </div>
-            <button type="button" onclick="getUserCityTemp()">Zjisti teplotu</button>
+            <button type="button" onclick="Roztoc()">Roztoc to</button>
         </form>
     </div>
 </body>

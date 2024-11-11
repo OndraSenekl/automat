@@ -1,100 +1,21 @@
-/* style.css */
-
-/* Reset some default styles */
-body, h1, div, form, input, button {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Garamond', serif; /* Elegantní písmo */
-    background: url('https://images.unsplash.com/photo-1531791530222-5c601d0a0be5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwyMDg2NzZ8MHwxfGFsbHwxfHx8fHx8fHwxNjA1NzY2NjA5&ixlib=rb-1.2.1&q=80&w=1920') no-repeat center center fixed; /* Krásné pozadí */
-    background-size: cover; /* Pokrytí celého pozadí */
-    color: #fff; /* Bílý text pro kontrast */
-    padding: 20px;
-}
-
-#weather {
-    max-width: 600px;
-    margin: 0 auto; /* Centrovat obsah */
-    padding: 30px;
-    background: rgba(40, 40, 40, 0.9); /* Temnější, poloprůhledný pozadí */
-    border-radius: 15px; /* Zaoblené rohy */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Hlubší stín pro dramatický efekt */
-    text-align: center; /* Centrovat text uvnitř */
-    border: 2px solid gold; /* Zlatý okraj pro královský efekt */
-}
-
-h1 {
-    font-size: 3.5em; /* Větší velikost písma pro titulek */
-    color: gold; /* Zlatá barva pro nádech luxusu */
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Stín pro text */
-}
-
-#dobronin, #jihlava, #city {
-    margin: 15px 0;
-    font-size: 1.8em; /* Větší velikost písma pro lepší čitelnost */
-    font-weight: bold; /* Tučný text pro zobrazení teploty */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Stín pro text */
-}
-
-form {
     display: flex;
-    justify-content: center; /* Centrovat prvky formuláře */
-    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
-input[type="text"] {
-    padding: 12px;
-    border: 1px solid #ccc; /* Světle šedý okraj */
-    border-radius: 5px; /* Zaoblené rohy pro vstup */
-    width: 70%; /* Širší vstup */
-    margin-right: 10px; /* Mezery mezi vstupem a tlačítkem */
-    font-size: 1em; /* Konzistentní velikost písma */
-    background-color: rgba(255, 255, 255, 0.9); /* Světlejší pozadí pro vstup */
-    transition: border 0.3s; /* Hladké změny okraje */
+#kotouce {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
-input[type="text"]:focus {
-    border: 2px solid gold; /* Zlatý okraj při zaostření */
-    outline: none; /* Odebrat výchozí obrys */
+hr {
+    margin: 20px 10px 10px 10px;
 }
 
-button {
-    padding: 12px 20px;
-    border: none; /* Odebrat výchozí okraj */
-    border-radius: 5px; /* Zaoblené rohy pro tlačítko */
-    background-color: gold; /* Zlaté pozadí pro tlačítko */
-    color: #333; /* Tmavý text */
-    cursor: pointer; /* Ukazatel kurzoru při najetí */
-    font-size: 1em; /* Konzistentní velikost písma */
-    transition: background-color 0.3s, transform 0.2s; /* Hladké změny barvy pozadí a škálování tlačítka */
-}
-
-button:hover {
-    background-color: #e6c200; /* Tmavší zlato při najetí myší */
-    transform: scale(1.05); /* Lehce zvětšit tlačítko při najetí */
-}
-
-/* Responsivní úpravy */
-@media (max-width: 768px) {
-    #weather {
-        padding: 20px;
-    }
-
-    h1 {
-        font-size: 2.5em; /* Responsivní velikost titulku */
-    }
-
-    input[type="text"], button {
-        width: 100%; /* Úplná šířka na menších obrazovkách */
-        margin-right: 0; /* Odebrat mezeru na menších obrazovkách */
-        margin-bottom: 10px; /* Přidat mezeru pod tlačítkem */
-    }
-
-    button {
-        margin-top: 10px; /* Mezery nad tlačítkem */
-    }
+input, button {
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
 }
