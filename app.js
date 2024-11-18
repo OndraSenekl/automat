@@ -42,7 +42,8 @@ function Roztoc() {
     const second = document.getElementById("second").textContent;
     const third = document.getElementById("third").textContent;
 
-    const vysledek = "vyhral jsi";
+    let pocetVyher = 0;
+    let vysledek = "vyhral jsi: " + pocetVyher;
 
     if (first == second && second == third)
     document.getElementById('vysledek').innerText = vysledek;
