@@ -1,21 +1,143 @@
+/* Reset základních stylů pro lepší kompatibilitu napříč prohlížeči */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Tělo stránky */
 body {
+    font-family: 'Arial', sans-serif;
+    background-color: #222;
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    text-align: center;
 }
 
+/* Hlavní kontejner (automat) */
+#weather {
+    background-color: #111;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(173, 216, 230, 0.5);
+    padding: 40px;
+    width: 80%;
+    max-width: 700px;
+    border: 4px solid #444;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Titulek */
+h1 {
+    font-size: 3rem;
+    color: #ff66b2; /* Růžová barva */
+    margin-bottom: 20px;
+    text-shadow: 0 0 15px rgba(255, 102, 178, 0.8), 0 0 30px rgba(173, 216, 230, 0.5);
+    animation: blink 1.5s infinite alternate;
+}
+
+/* Kotouce (symboly) */
 #kotouce {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
+    margin-bottom: 30px;
+    padding: 25px;
+    background-color: #333;
+    border-radius: 15px;
+    border: 2px solid #555;
 }
 
+/* Indiv. kotouce */
+#kotouce div {
+    font-size: 4rem;
+    color: #add8e6; /* Světle modrá */
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(173, 216, 230, 0.8), 0 0 20px rgba(255, 102, 178, 0.5);
+    animation: spin 1s ease-in-out infinite, blink 1.5s infinite alternate;
+}
+
+/* Výsledek textu */
+#vysledek {
+    font-size: 1.8rem;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #ff66b2; /* Růžová */
+    text-shadow: 0 0 10px rgba(255, 102, 178, 0.8), 0 0 20px rgba(173, 216, 230, 0.5);
+    animation: blink 1s infinite alternate;
+}
+
+/* Tlačítko */
+button {
+    background-color: #ff66b2; /* Růžová */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 30px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 25px rgba(173, 216, 230, 0.5);
+}
+
+button:hover {
+    background-color: #ff80ff;
+    transform: scale(1.1);
+}
+
+button:active {
+    background-color: #ff4d94;
+    box-shadow: 0 0 30px rgba(255, 102, 178, 0.6);
+}
+
+/* Horizontální čára */
 hr {
-    margin: 20px 10px 10px 10px;
+    margin: 20px 0;
+    border: 1px solid #444;
 }
 
-input, button {
-    width: 80%;
-    margin: 10px auto;
+/* Input pro sázení */
+input[type="number"] {
+    background-color: #333;
+    color: #fff;
+    border: 2px solid #555;
+    border-radius: 5px;
     padding: 10px;
+    width: 120px;
+    font-size: 1.4rem;
+    margin-top: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(173, 216, 230, 0.5);
+}
+
+/* Styl pro text Vydělané peníze */
+#Vydelano {
+    font-size: 1.6rem;
+    color: #ff66b2; /* Růžová */
+    margin-top: 20px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 102, 178, 0.8);
+    animation: blink 1s infinite alternate;
+}
+
+
+/* Blikající efekt */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Zářící okraj pro automat při aktivitě */
+#weather:active {
+    box-shadow: 0 0 50px rgba(173, 216, 230, 0.7), 0 0 100px rgba(255, 102, 178, 0.7);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    33% { transform: rotate(-30deg); }
+    66% { transform: rotate(30deg); }
+    100% { transform: rotate(0deg); }
 }

@@ -15,6 +15,10 @@ function getRandomZnak(zasobnik_znaku){
     return(zasobnik_znaku[num]);
 }
 
+let pocetVyher = 0;
+let vyhra = 0;
+let celkemPrachu = 0;
+
 function Roztoc() {
 
     let zasobnik_znaku = ["⭐", "❤️", "🍕", "🍖", "🌍"]
@@ -42,11 +46,19 @@ function Roztoc() {
     const second = document.getElementById("second").textContent;
     const third = document.getElementById("third").textContent;
 
-    let pocetVyher = 0;
-    let vysledek = "vyhral jsi: " + pocetVyher;
+    const vlozenePrachy = document.getElementById("sazka").value;
+
+    celkemPrachu = celkemPrachu - vlozenePrachy;
+    document.getElementById("Vydelano").value = vyhra;
+    
 
     if (first == second && second == third)
-    document.getElementById('vysledek').innerText = vysledek;
-    
+    {
+        vyhra = "vyhravas: " + (vlozenePrachy * 2);
+        pocetVyher = pocetVyher + 1;
+        let vysledek = "pocet vyher: " + pocetVyher;
+        document.getElementById("vysledek").textContent = vysledek;
+        document.getElementById("Vydelano").textContent = vyhra;
+    }
 }
     
