@@ -51,13 +51,10 @@ h1 {
     border: 2px solid #555;
 }
 
-/* Indiv. kotouce */
-#kotouce div {
-    font-size: 4rem;
-    color: #add8e6; /* Světle modrá */
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(173, 216, 230, 0.8), 0 0 20px rgba(255, 102, 178, 0.5);
-    animation: spin 1s ease-in-out infinite, blink 1.5s infinite alternate;
+
+/* Efekt při výhře */
+.winEffect {
+    animation: winAnimation 1s ease-out;
 }
 
 /* Výsledek textu */
@@ -135,9 +132,25 @@ input[type="number"] {
     box-shadow: 0 0 50px rgba(173, 216, 230, 0.7), 0 0 100px rgba(255, 102, 178, 0.7);
 }
 
+/* Animace kotoučů */
 @keyframes spin {
     0% { transform: rotate(0deg); }
-    33% { transform: rotate(-30deg); }
-    66% { transform: rotate(30deg); }
-    100% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
+
+#kotouce div {
+    font-size: 4rem;
+    color: #add8e6; /* Světle modrá */
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(173, 216, 230, 0.8), 0 0 20px rgba(255, 102, 178, 0.5);
+    animation: spin 3s linear infinite; /* Točení kotouče */
+    position: relative;
+}
+
+/* Úprava animace pro výhru */
+@keyframes winAnimation {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+

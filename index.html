@@ -1,5 +1,3 @@
-
-<!-- Hlavni web. stranka aplikace -->
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -22,13 +20,20 @@
 
         <p id="vysledek"></p>
         <hr />
-        <form>
+
+        <form id="vkladForm">
+            <label for="sazka">Vložte částku:</label>
+            <input type="number" id="sazka" min="1" placeholder="Vložte částku" required>
             <button type="button" onclick="Roztoc()">Roztoc to</button>
         </form>
-        <form>
-            <input type="number" id="sazka">
+
+        <form id="autospinForm">
+            <button id="startAutoSpinButton">Start AutoSpin</button>
+            <button id="stopAutoSpinButton">Stop AutoSpin</button>
         </form>
+
         <p id="Vydelano"></p>
+        <p id="stavPenez">Stav peněz: <span id="stavPenezValue">0</span> CZK</p>
     </div>
 </body>
 </html>

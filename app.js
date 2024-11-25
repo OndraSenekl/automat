@@ -10,55 +10,100 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-function getRandomZnak(zasobnik_znaku){
-    const num = Math.floor(Math.random() * (zasobnik_znaku.length-1));
-    return(zasobnik_znaku[num]);
-}
-
 let pocetVyher = 0;
 let vyhra = 0;
-let celkemPrachu = 0;
+let celkemPrachu = 1000; // Začínáme s nějakým počátečním množstvím peněz
 
+// Seznam symbolů
+let zasobnik_znaku = ["⭐", "❤️", "🍕", "🍖", "🌍"];
+
+// Funkce pro získání náhodného znaku z pole
+function getRandomZnak() {
+    const num = Math.floor(Math.random() * zasobnik_znaku.length);
+    return zasobnik_znaku[num];
+}
+
+let autoSpinInterval = null; // Inicializace proměnné pro sledování autospinu
+
+// Funkce pro roztáčení kotouče
 function Roztoc() {
+    const vlozenePrachy = parseInt(document.getElementById("sazka").value) || 0;
+    if (vlozenePrachy <= 0) return alert("Zadejte platnou částku!");
 
-    let zasobnik_znaku = ["⭐", "❤️", "🍕", "🍖", "🌍"]
-    const refresh_rate1 = 100;
-    const refresh_rate2 = 200;
-    const refresh_rate3 = 300;
+    celkemPrachu -= vlozenePrachy;
+    document.getElementById("stavPenezValue").textContent = celkemPrachu;
 
-    for (let i = 0; i < 20000; i++)
-    {
-        if (i % refresh_rate1 == 0)
-        {
-            document.getElementById("first").textContent = getRandomZnak(zasobnik_znaku);
+    // Počáteční animace
+    let kotouce = document.querySelectorAll("#kotouce div");
+    kotouce.forEach((kotouc) => {
+        kotouc.textContent = getRandomZnak();
+    });
+
+    // Nastavení intervalů pro změnu symbolů během točení
+    let intervaly = [100, 200, 300];
+    let pocitadlo = 0;
+
+    let interval = setInterval(function() {
+        kotouce.forEach((kotouc) => {
+            kotouc.textContent = getRandomZnak();
+        });
+        pocitadlo++;
+
+        // Po dokončení animace zastavit interval a ukázat výsledek
+        if (pocitadlo >= 15) {
+            clearInterval(interval);
+            // Konec animace, získání konečných symbolů
+            kotouce.forEach((kotouc) => {
+                kotouc.textContent = getRandomZnak(); // Nastavení posledního symbolu
+            });
+
+            const first = document.getElementById("first").textContent;
+            const second = document.getElementById("second").textContent;
+            const third = document.getElementById("third").textContent;
+
+            if (first === second && second === third) {
+                vyhra = vlozenePrachy * 25; // Výhra je vklad * 15
+                pocetVyher++;
+                document.getElementById("vysledek").textContent = "Počet výher: " + pocetVyher;
+                document.getElementById("Vydelano").textContent = "Vyhráváte: " + vyhra + " CZK";
+                celkemPrachu += vyhra;
+                document.getElementById("stavPenezValue").textContent = celkemPrachu;
+
+                // Animace pro kotouče, když uživatel vyhraje
+                kotouce.forEach((kotouc) => {
+                    kotouc.classList.add("winEffect");
+                });
+
+                // Odstranění efektu po 1 sekunde (aby mohl být znovu použit)
+                setTimeout(() => {
+                    kotouce.forEach((kotouc) => {
+                        kotouc.classList.remove("winEffect");
+                    });
+                }, 1000);
+            } else {
+                document.getElementById("Vydelano").textContent = "Bohužel, nic jste nevyhráli.";
+            }
         }
-        if (i % refresh_rate2 == 0)
-        {
-           document.getElementById("second").textContent = getRandomZnak(zasobnik_znaku);
-        }
-        if (i % refresh_rate3 == 0)
-        {
-            document.getElementById("third").textContent = getRandomZnak(zasobnik_znaku);
-        }
-    }
+    }, 100); // Interval mezi změnami znaků (100ms)
+}
 
-    const first = document.getElementById("first").textContent;
-    const second = document.getElementById("second").textContent;
-    const third = document.getElementById("third").textContent;
+// Start AutoSpin
+function startAutoSpin() {
+    if (autoSpinInterval !== null) return;  // Pokud už běží, neaktivujeme nový interval
+    autoSpinInterval = setInterval(Roztoc, 2000); // Automatický spin každé 2 sekundy
+    document.querySelector("#autospinForm button").textContent = "AutoSpin běží";  // Změna textu tlačítka
+}
 
-    const vlozenePrachy = document.getElementById("sazka").value;
-
-    celkemPrachu = celkemPrachu - vlozenePrachy;
-    document.getElementById("Vydelano").value = vyhra;
-    
-
-    if (first == second && second == third)
-    {
-        vyhra = "vyhravas: " + (vlozenePrachy * 2);
-        pocetVyher = pocetVyher + 1;
-        let vysledek = "pocet vyher: " + pocetVyher;
-        document.getElementById("vysledek").textContent = vysledek;
-        document.getElementById("Vydelano").textContent = vyhra;
+// Stop AutoSpin
+function stopAutoSpin() {
+    if (autoSpinInterval !== null) {
+        clearInterval(autoSpinInterval);  // Zastavení intervalového autospinu
+        autoSpinInterval = null;  // Resetování proměnné
+        document.querySelector("#autospinForm button").textContent = "Start AutoSpin";  // Reset textu tlačítka
     }
 }
-    
+
+// Připojit event listener k tlačítkům pro spuštění/zastavení autospinu
+document.getElementById("startAutoSpinButton").addEventListener("click", startAutoSpin);
+document.getElementById("stopAutoSpinButton").addEventListener("click", stopAutoSpin);
+
