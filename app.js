@@ -38,9 +38,10 @@ function PridejKredit(){
     document.getElementById("kredit").className = "page";
 }
 
-houseEdge = 0.08;
-
 function calculateWinAmount(sazka, zasobnik_znaku) {
+
+    houseEdge = (document.getElementById("VyhraProcento").value / 100);
+
     const numberOfSymbols = zasobnik_znaku.length;  // Počet symbolů v zásobníku
     const reels = 3;  // Počet kotoučů
     const winProbability = 1 / Math.pow(numberOfSymbols, reels - 1);  // Pravděpodobnost výhry (všechny kotouče stejné)
