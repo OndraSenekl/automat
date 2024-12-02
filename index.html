@@ -1,39 +1,54 @@
+<!-- Hlavni web. stranka aplikace -->
 <!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MuzuPrestatKdyChci</title>
+    <title>Cinkacka</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
-    <script src="app.js"></script>
 </head>
 <body>
-    <div id="weather">
-        <h1>MuzuPrestatKdyChci</h1>
-
-        <div id="kotouce">
-            <div id="first">⭐</div>
-            <div id="second">⭐</div>
-            <div id="third">⭐</div>
-        </div>
-
-        <p id="vysledek"></p>
-        <hr />
-
-        <form id="vkladForm">
-            <label for="sazka">Vložte částku:</label>
-            <input type="number" id="sazka" min="1" placeholder="Vložte částku" required>
-            <button type="button" onclick="Roztoc()">Roztoc to</button>
+    <div id="kredit" class="page_visible">
+        <form>
+            <label for="kredit">Vstupní kredit</label>
+            <input type="number" name="kredit" id="input_kredit" value="1000">
+            <button type="button" onclick="PridejKredit()">Přidej kredit</button>
         </form>
-
-        <form id="autospinForm">
-            <button id="startAutoSpinButton">Start AutoSpin</button>
-            <button id="stopAutoSpinButton">Stop AutoSpin</button>
-        </form>
-
-        <p id="Vydelano"></p>
-        <p id="stavPenez">Stav peněz: <span id="stavPenezValue">0</span> CZK</p>
     </div>
+    <div id="strana" class="page">
+        <div id="strana1" class="page_visible">
+            <h1>Cinkacka</h1>
+            <div id="kotouce">
+                <div id="first">⭐</div>
+                <div id="second">⭐</div>
+                <div id="third">⭐</div>
+            </div>
+            <hr />
+            <form>
+                <button type="button" onclick="Roztoc()">Roztoč</button>
+                Autospin
+                <label class="switch">
+                    <input id="autospin" type="checkbox" onchange="handleAutospinChange()">
+                    <span class="slider round"></span>
+                </label>
+            </form>
+            <form>
+                <label for="sazka">Sázka</label>
+                <input type="number" name="sazka" id="sazka" value="1">
+            </form>
+            <div id="vyhra">Vyhra: Vyhral</div>
+            <div id="current_kredit">Kredit: 0</div>
+        </div>
+        <div id="strana2" class="page">
+            <form>
+                <label for="znaky">Znaky v automatu</label>
+                <input type="text" name="znaky" id="znaky" value="⭐, 🍀, 🌈, 🍄, 🍎">
+            </form>
+        </div>
+        <button type="button" onclick="ZmenStranku1()">Tocka</button>
+        <button type="button" onclick="ZmenStranku2()">Nastaveni</button>
+    </div>
+    <script src="app.js"></script>
 </body>
 </html>
